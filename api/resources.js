@@ -1,12 +1,7 @@
-import { config } from "dotenv";
-import { createClient } from '@supabase/supabase-js'
-
-config(); 
-const supabaseUrl = process.env.DATABASE_URL
-const supabaseKey = process.env.SUPABASE_KEY
-const supabase = createClient(supabaseUrl, supabaseKey);
+import connectToDB from "./utils/connectToDB";
 
 export default async function getAllResources(req, res) {
+  const supabase = connectToDB();
   const { data, error } = await supabase
     .from('resources')
     .select();

@@ -5,7 +5,8 @@ export default async function getSingleResource(req, res) {
     const supabase = connectToDB();
     const {data, error} = await supabase
         .from('resources')
-        .select('id', id)
+        .select()
+        .eq('id', id);
     if (error) {
         return res.status(400).send(error);
     }

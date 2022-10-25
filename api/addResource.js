@@ -8,6 +8,7 @@ export default async function addResource(req, res) {
         .insert({title: title, url: url, description: description})
         .select();
     if (error) {
+        console.error(error);
         return res.status(400).send(error);
     }
     return res.status(200).send(data);
